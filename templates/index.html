@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kävijämäärä Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Kävijämäärä Dashboard</h1>
+
+    <div class="topbar">
+      <button class="device-btn active" data-device="simulated">Simuloitu</button>
+      <button class="device-btn" data-device="robogarage">RoboGarage</button>
+      <button class="device-btn" data-device="iotgarage">IoT Garage</button>
+    </div>
+
+    <div class="summary">
+      <div class="card">
+        <h3>Kävijöitä yhteensä (7vrk)</h3>
+        <div class="value" id="totalPeople">-</div>
+      </div>
+      <div class="card">
+        <h3>Tietueita</h3>
+        <div class="value" id="rowsCount">-</div>
+      </div>
+      <div class="card">
+        <h3>Keskiarvo / tietue</h3>
+        <div class="value" id="avgPerRecord">-</div>
+      </div>
+      <div class="card">
+        <h3>Ajanjakso</h3>
+        <div class="muted" id="timeRange">-</div>
+      </div>
+    </div>
+
+    <div class="charts">
+      <div class="chart-card">
+        <h2>Kävijämäärä viikonpäivittäin (7 päivää summa)</h2>
+        <canvas id="dailyChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h2>Mediaani kävijämäärä tunneittain (7 päivää, päivän tuntisummien mediaani)</h2>
+        <canvas id="hourlyChart"></canvas>
+      </div>
+
+      <div class="chart-card">
+        <h2>Viikonpäivä × Tunti Lämpökartta (7 päivää, tuntisumma)</h2>
+        <div id="heatmapChart" style="width:100%;height:500px;"></div>
+      </div>
+
+      <div class="chart-card">
+        <h2>Aikajana (7 päivää, raakadata)</h2>
+        <canvas id="timelineChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
